@@ -41,7 +41,7 @@ jobs:
       id: stein
     - name: Post stein command result to GitHub comment
       uses: b4b4r07/action-github-comment@master
-      if: steps.stein.outputs.result
+      if: always() && steps.stein.outputs.result
       with:
         body: |
           ## stein apply result
@@ -64,6 +64,14 @@ In addition, you can filter the changed files, for example, let's say you want t
 ```
 
 Besides, if you want to post the `stein apply` command result on your pull requests, you need to set the step `Post stein command result to GitHub comment`. The contents of `body` is the message itself. You can configure it as Markdown. For more details, please see also [b4b4r07/action-github-comment](https://github.com/b4b4r07/action-github-comment).
+
+To put the comment on GitHub even if the previous `stein` step is failed, you need to set [`always()` condition](https://help.github.com/en/actions/reference/contexts-and-expression-syntax-for-github-actions#job-status-check-functions) like this:
+
+```yaml
+      if: always() && steps.stein.outputs.result
+```
+
+This means the comment will be posted to GitHub regardless of previous build step but at least the output of previous step needs to be not empty.
 
 <img src="docs/comment.png" width="600">
 
