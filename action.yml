@@ -1,0 +1,25 @@
+name: 'stein'
+description: 'Run stein test command'
+inputs:
+  path:
+    description: 'Path to directory where config files are located'
+    required: false
+    default: '.'
+  policy:
+    description: 'Path to the Rego policy files directory'
+    required: false
+    default: 'policy'
+  files:
+    description: 'A list of config file to be tested by stein. Separated by a space'
+    required: false
+    default: ''
+  matches:
+    description: 'A list of cases to be tested (e.g. "*.yaml *.json"). Separated by a space'
+    required: false
+    default: ''
+outputs:
+  result:
+    description: 'Outputs of stein command'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
