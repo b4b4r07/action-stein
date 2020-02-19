@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BASE="${INPUT_PATH:-.}"
-POLICY="${INPUT_POLICY:-policy}"
+POLICY="${INPUT_POLICY:-.policy}"
 FILES=( ${INPUT_FILES} )
 MATCHES=( ${INPUT_MATCHES} )
 
@@ -36,7 +36,7 @@ run_stein() {
 
   stein apply \
     -policy "${POLICY}" \
-    "${files[@]}"
+    "${files[@]}" 2>&1 # use stdout to make tee command capture the output
 
   return ${?}
 }

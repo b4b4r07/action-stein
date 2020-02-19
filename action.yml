@@ -6,9 +6,9 @@ inputs:
     required: false
     default: '.'
   policy:
-    description: 'Path to the Rego policy files directory'
+    description: 'Path to the stein policy files directory'
     required: false
-    default: 'policy'
+    default: '.policy'
   files:
     description: 'A list of config file to be tested by stein. Separated by a space'
     required: false
